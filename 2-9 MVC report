@@ -1,1 +1,25 @@
 ◎Rails  9章	 ここまでに記述したプログラムの説明
+◎MVCアーキテクチャへの理解を深める	
+	
+・一覧画面表示までの流れ	
+１HTTPリクエスト（localhost:3000/todolists) HTTPメソッド：get	
+↓	
+２routingに指令が行く	
+get "todolists" => "todolists#index"	
+該当するroutingが呼び出される（todolistsコントローラーのindexアクションへつながる）	
+↓	
+３controllerからはview、モデルへ指令を出す	
+・定義されているアクション	
+"def index
+    @lists = List.all
+  end"	
+モデルへ出す指示　※モデルはデータの取り扱い作業を行う役割がある	
+・indexアクションでは@listsへListモデルのデータ全てを代入するようになっているのでとって来い	
+→と言う指示を受けモデルがデータベースと通信し指示をこなす	
+	
+・アクションに対応するviewファイルを呼び出す（indexアクション→index.html.erb）	
+↓	
+両方がcontrollerへ戻ってきたところでとってきたデータをまずモデルが@listにデータを保存する	
+次にインスタンス変数がviewファイルに送られHTMLが作成される	
+↓	
+4　作成されたHTMLがcontrollerを経由してブラウザに送られ人が見れるように整形し、UIであるPCの画面などに表示する	
